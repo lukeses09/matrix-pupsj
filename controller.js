@@ -1,6 +1,3 @@
-math.config({ number:'fraction'   });
-
-
 
 $('#btn_generate').click(function(){
 	$(this).removeClass('btn-success');
@@ -103,13 +100,42 @@ function copyTable(id_table,desc,rows,cols,copyfrom){
 		create_lead(0,cols,id_table,0);
 }
 
-function create_lead(x,y,id_table,leadingcol){
-	for (var c = 0; c < y; c++){
-		var cellVal = $('#'+id_table+x+leadingcol).text();
-		$('#'+id_table+x+c).text(math.multiply( math.fraction(cellVal),math.fraction(1/cellVal)      ));  //RECIPROCAL
+function create_lead(row,col,id_table,leadingcol){
+	var lead = $('#'+id_table+ row + leadingcol).text();
+	for (var iterate  = 0; iterate < col; iterate++){
+		var cellVal = $('#'+id_table+ row + iterate).text();
+		var data = math.multiply( math.fraction(cellVal),math.fraction(math.inv(lead))) ;
+			if(isWhole(data)==true)
+				$('#'+id_table+row+iterate).text( data );  //RECIPROCAL
+			else
+				alert(clean(data));
+				//$('#'+id_table+row+iterate).text( clean(data)  );  //RECIPROCAL
 	}
 
 }
+
+function isWhole(num){
+	if(num%1==0)
+		return true;
+	else
+		return false;
+}
+
+function isNegative(num){
+	if(num<0)
+		return true;
+	else
+		return false;
+}
+
+function isNegativeFraction(num){
+	if(num.slice(0,1)=='-')
+		return true;
+	else
+		return false;
+}
+
+
 
 function validate(){
 	var rows = $('#row').val();
@@ -129,8 +155,34 @@ function validate(){
 	}	
 }
 
-function fractodeci(a){
-	var split = a.split('/');
-	var result = parseInt(split[0], 10) / parseInt(split[1], 10);
-	return result;bbbb
+
+function clean(num){
+	var rgx = /[()]/g;
+	var x = num.replace(rgx, ''); // remove
+	return x;
+}
+
+/*______________________________________________*/
+
+Number.prototype.fraction=fraction;
+function fraction(decimal){
+	if(!decimal){
+		decimal=this;
+	}
+	whole = String(decimal).split('.')[0];
+	decimal = parseFloat("."+String(decimal).split('.')[1]);
+	num = "1";
+	for(z=0; z<String(decimal).length-2; z++){
+		num += "0";
+	}
+	decimal = decimal*num;
+	num = parseInt(num);
+	for(z=2; z<decimal+1; z++){
+		if(decimal%z==0 && num%z==0){
+			decimal = decimal/z;
+			num = num/z;
+			z=2;
+		}
+	}
+	return ((whole==0)?"" : whole+" ")+decimal+"/"+num;
 }

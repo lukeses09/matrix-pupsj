@@ -13,6 +13,8 @@
     <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>  
     <!-- match.js -->
     <script src="js/math.js"></script>  
+    <!-- fraction.js -->
+    <script src="resources/plugins/fraction/fraction.js"></script>  
     <!-- Ionicons -->
     <link href="resources/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
 </head>
