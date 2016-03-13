@@ -42,14 +42,45 @@ $('#btn_solve').click(function(){
 
 function initial(){
 	
+	$('#btn_solve').prop('disabled',true);
+
 	for(var y=0; y<row; y++){
 		//var cell = new Array();
 		for(var x=0; x<col; x++){
 			mx[y][x] = $('#cell'+y+x).val();
 		}
 	}
+		var append = ' <hr style="margin-top:50px">';
+		append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-info"><i class="ion-ios-list-outline"></i> Solution: </h2></div> <div class="col-md-3"></div> </div>';
+	append += ' <div id="div_initial" class="row" style="margin-top:15px"> ';
+	append += '<div class="col-md-3"></div>';
+	append += '<div class="col-md-4" id="div_initial_table"> ';
+	append += '<table id="table_initial" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
+	append += '</div> <div class="col-md-2"> <h5> Given Matrix </h5> </div> <div class="col-md-3"></div> ';
+	$('#main').after(append);
 
-	
+	var table = $('#table_initial');
+	$("#table_initial tr").remove();	
+	for(var y = 0; y < row; y++)
+	{
+	    var tr = $('<tr style="width:20px">');
+				for(var x=0; x<col; x++){
+					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
+				}
+	    
+	    tr.appendTo(table_initial);
+	}
+
+	table.appendTo('#div_initial_table'); //Add your resulting table to the DOM, I'm using the body tag for example	
+
+	$('#div_initial').css('display','block');
+      $('html, body').animate({
+          scrollTop: $("#table_grid").offset().top
+      }, 1000);   	
+  $('#div_grid').css('display','none');
+  compute();
+
+
 }
 /*
 function initial(){
