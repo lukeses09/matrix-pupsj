@@ -1,8 +1,16 @@
+var mx = new Array([]);
+var row;
+var col;
 
 $('#btn_generate').click(function(){
 	$(this).removeClass('btn-success');
-	var row = $('#row').val();
-	var col = $('#col').val();	
+	row = $('#row').val();
+	col = $('#col').val();	
+
+	for(var i=0; i<row; i++){
+		mx[i] = [];
+	}//to declare 2D arrays
+
 	$('#div_grid').css('display','block');
       $('html, body').animate({
           scrollTop: $("#table_grid").offset().top
@@ -15,6 +23,7 @@ function create_table(m,n){
 	var cols = n;
 	var table = $('#table_grid');
 	$("#table_grid tr").remove();	
+
 	for(var r = 0; r < rows; r++)
 	{
 	    var tr = $('<tr style="width:20px">');
@@ -28,9 +37,21 @@ function create_table(m,n){
 
 $('#btn_solve').click(function(){
 	initial();
-
 })
 
+
+function initial(){
+	
+	for(var y=0; y<row; y++){
+		//var cell = new Array();
+		for(var x=0; x<col; x++){
+			mx[y][x] = $('#cell'+y+x).val();
+		}
+	}
+
+	
+}
+/*
 function initial(){
 	$('#btn_solve').prop('disabled',true);
 	var rows = $('#row').val();
@@ -105,15 +126,16 @@ function create_lead(row,col,id_table,leadingcol){
 	for (var iterate  = 0; iterate < col; iterate++){
 		var cellVal = $('#'+id_table+ row + iterate).text();
 		var data = math.multiply( math.fraction(cellVal),math.fraction(math.inv(lead))) ;
-			if(isWhole(data)==true)
+	/*		if(isWhole(data)==true)
 				$('#'+id_table+row+iterate).text( data );  //RECIPROCAL
 			else
-				alert(clean(data));
+				//alert(clean(data));
 				//$('#'+id_table+row+iterate).text( clean(data)  );  //RECIPROCAL
+			
 	}
 
 }
-
+*/
 function isWhole(num){
 	if(num%1==0)
 		return true;
