@@ -78,10 +78,27 @@ function initial(){
           scrollTop: $("#table_grid").offset().top
       }, 1000);   	
   $('#div_grid').css('display','none');
-  compute();
 
-
+	do_the_matrix();
 }
+
+	function do_the_matrix(){
+		for(L=0; L<row; L++){
+			for(r=L; r<row; r++){
+				for(c=L; c<col; c++){
+					if(mx[L][L] != 1){
+						var onemaker = math.inv(mx[L][L]);
+						mx[r][c] *= onemaker;
+						alert(mx[r][c]);
+					}
+				}
+			}
+		}
+		
+	}
+
+
+
 /*
 function initial(){
 	$('#btn_solve').prop('disabled',true);
