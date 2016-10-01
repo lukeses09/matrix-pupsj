@@ -1,6 +1,7 @@
 var mx = new Array([]);
 var row;
 var col;
+var type;
 
 $('#btn_generate').click(function(){
 	$(this).removeClass('btn-success');
@@ -36,6 +37,11 @@ function create_table(m,n){
 }
 
 $('#btn_solve').click(function(){
+	$('#btn_generate').css('display','none');
+	$('#row').prop('disabled',true);
+	$('#col').prop('disabled',true);	
+	$('#type').prop('disabled',true);
+	type = $('#type').val();
 	initial();
 })
 
@@ -71,12 +77,25 @@ function initial(){
 			for(var y = 0; y < row; y++){
 			    var tr = $('<tr style="width:20px">');
 				for(var x=0; x<col; x++){
-					if(y==(o-1) &&  x!=(o-1) ){
-						mx[y][x] = 0; //make cell zero
+
+					if(type=='ref'){ //IF TYPE IS REF
+						if(y==(o-1) &&  x!=(o-1) ){
+							mx[y][x] = 0; //make cell zero
+						}
+						else if(y==(o-1) &&  x==(o-1) ){
+							mx[y][x] = 1; //make cell one lead entry
+						}								
 					}
-					else if(y==(o-1) &&  x==(o-1) ){
-						mx[y][x] = 1; //make cell one
-					}					
+
+					else if(type=='rref'){ //IF TYPE IS RREF
+						if(y==(o-1) &&  x<(o-1) ){
+							mx[y][x] = 0; //make cell zero
+						}
+						else if(y==(o-1) &&  x==(o-1) ){
+							mx[y][x] = 1; //make cell one lead entry
+						}	
+					}
+				
 					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
 				}
 			    
@@ -119,9 +138,6 @@ function show_given(){
   $('#div_grid').css('display','none');	
 } // end f.show_given
 
-function stripe(mx,row,col,x,y){
-	// alert("row= "+row,' col='+col+' x= '+x+' y='+y);
-} // end stripe()
 
 
 
