@@ -48,25 +48,52 @@ function initial(){
 		//var cell = new Array();
 		for(var y=0; y<col; y++){
 			mx[x][y] = $('#cell'+x+y).val();
-			alert(mx[x][y]);
 		}
 	}
 	/* ---------------------------------- */
+	show_given();
 
+	var o=1;
+	for(; o<=row; o++){
+			var n = parseInt(o-1);
 
-	
+			var append = ' <hr style="margin-top:50px">';
+			append += ' <div id="stripe_'+o+'" class="row" style="margin-top:15px">';
+			append += '<div class="col-md-3"></div>';
+			append += '<div class="col-md-4" id="div_stripe_'+o+'"> ';
+			append += '<table id="table_'+o+'" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
+			append += '</div> <div class="col-md-2"> <h5> Step '+o+' </h5> </div> <div class="col-md-3"></div> ';
+			$('#stripe_'+n).after(append);
 
+			var table = $('#table_'+o);
+			// $("#table_"+o+" tr").remove();	
+
+			for(var y = 0; y < row; y++){
+			    var tr = $('<tr style="width:20px">');
+				for(var x=0; x<col; x++){
+					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
+				}
+			    
+			    tr.appendTo("#table_"+o);
+			}
+
+			table.appendTo('#div_stripe_'+o); //Add your resulting table to the DOM, I'm using the body tag for example	
+		
+	} // loop end
+} // end f.initial
+
+function show_given(){
 	var append = ' <hr style="margin-top:50px">';
-	append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-info"><i class="ion-ios-list-outline"></i> Solution: </h2></div> <div class="col-md-3"></div> </div>';
-	append += ' <div id="div_initial" class="row" style="margin-top:15px"> ';
+	append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-info"><i class="ion-ios-list-outline"></i> SOLUTION: </h2></div> <div class="col-md-3"></div> </div>';
+	append += ' <div id="stripe_0" class="row" style="margin-top:15px"> ';
 	append += '<div class="col-md-3"></div>';
-	append += '<div class="col-md-4" id="div_initial_table"> ';
-	append += '<table id="table_initial" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
+	append += '<div class="col-md-4" id="div_stripe_0"> ';
+	append += '<table id="table_0" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
 	append += '</div> <div class="col-md-2"> <h5> Given Matrix </h5> </div> <div class="col-md-3"></div> ';
 	$('#main').after(append);
 
-	var table = $('#table_initial');
-	$("#table_initial tr").remove();	
+	var table = $('#table_0');
+	$("#table_0 tr").remove();	
 	for(var y = 0; y < row; y++)
 	{
 	    var tr = $('<tr style="width:20px">');
@@ -74,19 +101,21 @@ function initial(){
 					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
 				}
 	    
-	    tr.appendTo(table_initial);
+	    tr.appendTo("#table_0");
 	}
 
-	table.appendTo('#div_initial_table'); //Add your resulting table to the DOM, I'm using the body tag for example	
+	table.appendTo('#div_stripe_0'); //Add your resulting table to the DOM, I'm using the body tag for example	
 
-	$('#div_initial').css('display','block');
+	$('#div_stripe_0').css('display','block');
       $('html, body').animate({
           scrollTop: $("#table_grid").offset().top
       }, 1000);   	
-  $('#div_grid').css('display','none');
-
+  $('#div_grid').css('display','none');	
 }
 
+function stripe(mx,row,col,x,y){
+	// alert("row= "+row,' col='+col+' x= '+x+' y='+y);
+}
 
 
 
