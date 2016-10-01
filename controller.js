@@ -44,14 +44,20 @@ function initial(){
 	
 	$('#btn_solve').prop('disabled',true);
 
-	for(var y=0; y<row; y++){
+	for(var x=0; x<row; x++){
 		//var cell = new Array();
-		for(var x=0; x<col; x++){
-			mx[y][x] = $('#cell'+y+x).val();
+		for(var y=0; y<col; y++){
+			mx[x][y] = $('#cell'+x+y).val();
+			alert(mx[x][y]);
 		}
 	}
-		var append = ' <hr style="margin-top:50px">';
-		append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-info"><i class="ion-ios-list-outline"></i> Solution: </h2></div> <div class="col-md-3"></div> </div>';
+	/* ---------------------------------- */
+
+
+	
+
+	var append = ' <hr style="margin-top:50px">';
+	append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-info"><i class="ion-ios-list-outline"></i> Solution: </h2></div> <div class="col-md-3"></div> </div>';
 	append += ' <div id="div_initial" class="row" style="margin-top:15px"> ';
 	append += '<div class="col-md-3"></div>';
 	append += '<div class="col-md-4" id="div_initial_table"> ';
@@ -79,23 +85,8 @@ function initial(){
       }, 1000);   	
   $('#div_grid').css('display','none');
 
-	do_the_matrix();
 }
 
-	function do_the_matrix(){
-		for(L=0; L<row; L++){
-			for(r=L; r<row; r++){
-				for(c=L; c<col; c++){
-					if(mx[L][L] != 1){
-						var onemaker = math.inv(mx[L][L]);
-						mx[r][c] *= onemaker;
-						alert(mx[r][c]);
-					}
-				}
-			}
-		}
-		
-	}
 
 
 
