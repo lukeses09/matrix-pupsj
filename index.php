@@ -59,8 +59,8 @@
 				<div class="col-md-2">
 					<label> Type </label>
 					<select class="form-control input-lg" id="type">
-						<option>RREF</option>
-						<option>REF</option>				
+						<option value="ref">REF</option>									
+						<option value="rref">RREF</option>
 					</select>
 				</div>							
 				<div class="col-md-3"></div> <!--blank-->			

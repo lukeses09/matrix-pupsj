@@ -62,7 +62,7 @@ function initial(){
 			append += '<div class="col-md-3"></div>';
 			append += '<div class="col-md-4" id="div_stripe_'+o+'"> ';
 			append += '<table id="table_'+o+'" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
-			append += '</div> <div class="col-md-2"> <h5> Step '+o+' </h5> </div> <div class="col-md-3"></div> ';
+			append += '</div> <div class="col-md-2"> <h5> Step '+o+':  </h5> </div> <div class="col-md-3"></div> ';
 			$('#stripe_'+n).after(append);
 
 			var table = $('#table_'+o);
@@ -71,16 +71,22 @@ function initial(){
 			for(var y = 0; y < row; y++){
 			    var tr = $('<tr style="width:20px">');
 				for(var x=0; x<col; x++){
+					if(y==(o-1) &&  x!=(o-1) ){
+						mx[y][x] = 0; //make cell zero
+					}
+					else if(y==(o-1) &&  x==(o-1) ){
+						mx[y][x] = 1; //make cell one
+					}					
 					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
 				}
 			    
 			    tr.appendTo("#table_"+o);
 			}
 
-			table.appendTo('#div_stripe_'+o); //Add your resulting table to the DOM, I'm using the body tag for example	
-		
+			table.appendTo('#div_stripe_'+o); 
 	} // loop end
 } // end f.initial
+
 
 function show_given(){
 	var append = ' <hr style="margin-top:50px">';
@@ -111,11 +117,11 @@ function show_given(){
           scrollTop: $("#table_grid").offset().top
       }, 1000);   	
   $('#div_grid').css('display','none');	
-}
+} // end f.show_given
 
 function stripe(mx,row,col,x,y){
 	// alert("row= "+row,' col='+col+' x= '+x+' y='+y);
-}
+} // end stripe()
 
 
 
