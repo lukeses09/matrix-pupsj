@@ -104,6 +104,7 @@ function initial(){
 
 			table.appendTo('#div_stripe_'+o); 
 	} // loop end
+	show_answer();
 } // end f.initial
 
 
@@ -114,7 +115,7 @@ function show_given(){
 	append += '<div class="col-md-3"></div>';
 	append += '<div class="col-md-4" id="div_stripe_0"> ';
 	append += '<table id="table_0" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
-	append += '</div> <div class="col-md-2"> <h5> Given Matrix </h5> </div> <div class="col-md-3"></div> ';
+	append += '</div> <div class="col-md-2"> <h5> Given Matrix ('+type.toUpperCase()+') </h5> </div> <div class="col-md-3"></div> ';
 	$('#main').after(append);
 
 	var table = $('#table_0');
@@ -136,6 +137,36 @@ function show_given(){
           scrollTop: $("#table_grid").offset().top
       }, 1000);   	
   $('#div_grid').css('display','none');	
+} // end f.show_given
+
+function show_answer(){
+	var append = ' <hr style="margin-top:50px">';
+	append += '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <h2 class="text-success"><i class="fa fa-check-circle"></i> Answer</h2></div> <div class="col-md-3"></div> </div>';
+	append += ' <div id="stripe_answer" class="row" style="margin-top:15px"> ';
+	append += '<div class="col-md-3"></div>';
+	append += '<div class="col-md-4" id="div_stripe_answer"> ';
+	append += '<table id="table_answer" class="table table-condensed table-bordered"> <tbody></tbody> </table> ';
+	append += '</div> <div class="col-md-2"> <h5> Final Answer </h5> </div> <div class="col-md-3"></div> ';
+	$('#stripe_'+row).after(append);
+
+	var table = $('#table_answer');
+	$("#table_answer tr").remove();	
+	for(var y = 0; y < row; y++)
+	{
+	    var tr = $('<tr style="width:20px">');
+				for(var x=0; x<col; x++){
+					$('<td>'+mx[y][x]+'</td>').appendTo(tr);
+				}
+	    
+	    tr.appendTo("#table_answer");
+	}
+
+	table.appendTo('#div_stripe_answer'); //Add your resulting table to the DOM, I'm using the body tag for example	
+
+	var append = '<div class="row"> <div class="col-md-3"></div> <div class="col-md-6" style="text-align:center"> <img src="images/cute.gif"> </div> <div class="col-md-3"></div> </div>';
+	$('#stripe_answer').after(append);
+
+
 } // end f.show_given
 
 
