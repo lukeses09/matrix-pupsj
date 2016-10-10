@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <!-- Bootstrap 3.3.5 -->
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>    
+    <!-- jQuery 2.1.4 -->
+    <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>  
+    <!-- match.js -->
+    <script src="js/math.js"></script>  
+    <!-- fraction.js -->
+    <script src="resources/plugins/fraction/fraction.js"></script>  
+    <!-- Ionicons -->
+    <link href="resources/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+</head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Linear Algebra Matrix| Home </title>
+
+<style type="text/css">
+	.white-popup {
+	  position: relative;
+	  background: #ffc000;
+	  padding: 20px;
+	  width: auto;
+	  max-width: 500px;
+	  margin: 20px auto;
+	}
+
+	.panel > .panel-heading {
+	    background-image: none;
+	    background-color: #4D3382;
+	    border-color: #4D3382;
+	    color: white;   
+	}
+
+	footer{
+		background: #4D3382;
+		color: white;
+		font-size: 20px;
+		padding: 20px;
+	    position: fixed;
+	    bottom: 0;
+	    width: 100%;			
+	}
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Linear Algebra | Matrix</title>
+	<!--=============================================== The Plugins for CSS===============================================-->
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="stylesheet" type="text/css" href="css/color-nav.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="popup/magnific-popup.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<script src="js/modernizr.custom.js"></script>
+</head>
+<body>	
+
+<!--===============================================Plugins for Javascript=========================================-->
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="popup/jquery.magnific-popup.js"></script>
+
+ <!--===============================================Navigations for Home Page===============================================-->
+	<div class="navbar navbar-inverse navbar-static-top" >
+		<div style="background-color:#4D3382">
+		<div class="container">
+
+	
+	<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						
+
+					</button>
+	
+	<div class="collapse navbar-collapse navHeaderCollapse">
+	<ul class="nav navbar-nav navbar-right">
+	<nav class="cl-effect-20">
+		
+		<a href="index.html">
+		<span data-hover="Home">
+		Home
+		</span>
+		</a>
+		<a href="view/aboutus.html">
+		<span data-hover=" About us">
+		About us
+		</span>
+		</a>
+
+			
+	</ul>
+</ul>
+	</div>
+</div>
+	</div>
+	</div>
+
+<body >
+ 
+	<div class="container-fluid">
+
+
+		<section id="main" class="content">
+
+			<div class="row" style='text-align:center'>
+					<h1 class="text-primary"> <i style="font-size:50px" class="ion-ios-calculator"></i> Linear Algebra Matrix Calculator</h1>
+			</div>
+
+			<div class="row" style="margin-top:100px">
+				<div class="col-md-3"></div> <!--blank-->
+				<div class="col-md-2">
+					<label> Number of Rows (m) </label>
+					<select class="form-control input-lg" id="row">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>						
+					</select>
+				</div>
+				<div class="col-md-2">
+					<label> Number of Columns (n) </label>
+					<select class="form-control input-lg" id="col">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>						
+					</select>
+				</div>			
+				<div class="col-md-2">
+					<label> Type </label>
+					<select class="form-control input-lg" id="type">
+						<option value="ref">REF</option>									
+						<option value="rref">RREF</option>
+					</select>
+				</div>							
+				<div class="col-md-3"></div> <!--blank-->			
+			</div>
+
+			<div class="row" style="margin-top:30px">
+				<div class="col-md-5"></div> <!-- blank -->
+				<div class="col-md-2">
+					<button id="btn_generate" title="Generate Matrix Grid" class="btn btn-lg btn-block btn-success"> <i class="ion-checkmark"></i> Generate </button>
+				</div>
+				<div class="col-md-5"></div> <!-- blank -->			
+			</div>
+
+
+			<div id="div_grid" class="row" style="margin-top:30px; display:none; text-align:center"> <hr>		
+					<h4 class="text-info"> <i class="ion-information-circled"></i> Input data on the fields below </h4>
+					<small class="text-warning" style="font-style:italic"> Please enter the elements of the matrix (you can use integers or fractions - do not include a decimal point) e.g. (1/3). <br> All the entries left blank will be interpreted as zeros. 
+							When you are done, click on the "Submit" button. </small>
+					<br><br>
+				<div class="col-md-4"></div> <!--blank-->
+				<div class="col-md-4" id ="div_table">
+					<table id="table_grid" class="table table-bordered table-condensed">
+						<tbody>
+						</tbody>
+					</table>					
+				</div>
+
+				<div class="col-md-4"></div> <!--blank-->			
+				<div class="row">
+					<div class="col-md-5"></div><!--blank-->			
+					<div class="col-md-2"> 
+						<button id="btn_solve" class="btn btn-lg btn-block btn-success"> <i class="ion-edit"></i> Solve </button>	
+					</div>
+					<div class="col-md-5"></div><!--blank-->											
+				</div>					
+			</div><!--./div_grid-->
+
+
+		</section>
+	</div>
+
+
+ 
+
+</body>
+<section style="margin-top:100px">
+		<footer>
+			<div class="container">
+				<div class="row">
+					
+					<div class="container">
+					<div class="col-sm-6 col-sm-offset-6">
+
+					</div>
+					</div>
+					
+				        <small>Copyright &copy; 2015<?php if(date("Y")!=2015)echo" - ".date("Y")."";?> <text class="text-blue">PUP San Juan Matrix </text></strong> All rights reserved.
+
+
+				</div>
+			</div>
+
+		</footer>
+</section>
+
+<script src="js/controller.js"></script>
+
+</html>
+
+
+	
+
+
+
+			
+	
+	
+	
+
+
+
