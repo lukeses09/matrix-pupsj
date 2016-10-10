@@ -1,0 +1,10 @@
+INSTRUCTIONS TO RUN THE WEB APP
+------------------------------
+1. Double Click index file here inside the root directory of matrix-pupsj to open it up in browser 
+2. That's IT! You've open matrix-pupsj linear algebra calculator app.
+
+
+REQUIREMENTS
+-----------
+1. Any Web Browser except Internet Explorer
+2. Preferred Google Chrome
